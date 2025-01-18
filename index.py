@@ -19,9 +19,7 @@ users_db = {
     "shilagrawal@deloitte.com": "Shilpee Agrawal",
     "soburman@deloitte.com": "Somnath Burman",
     "stores_smel@shyamgroup.com": "Sumit Bag",
-    
     "binit@shyammetalics.com": "Binit Jha",
-   
     "smelpi@shyamgroup.com": "Dipak Yadav",
     "ssplpi@shyammetalics.com": "Bijay Singh",
     "sushant.jana@shyammetalics.com": "Sushant Jana",
