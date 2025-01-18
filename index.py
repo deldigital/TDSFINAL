@@ -66,11 +66,11 @@ questions = {
 
 # Correct answers
 correct_answers = {
-    1: "B",
-    2: "A",
-    3: "D",
-    4: "B",
-    5: "C",
+    1: "B. ",
+    2: "A. ",
+    3: "D. ",
+    4: "B. ",
+    5: "C. ",
     
 }
 
