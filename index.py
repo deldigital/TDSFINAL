@@ -64,11 +64,11 @@ questions = {
 
 # Correct answers
 correct_answers = {
-    1: "B.",
-    2: "A.",
-    3: "D.",
-    4: "B.",
-    5: "C.",
+    1: "B",
+    2: "A",
+    3: "D",
+    4: "B",
+    5: "C",
 }
 
 # Load credentials for Google Sheets
@@ -155,12 +155,11 @@ def submit_exam():
     append_to_google_sheet(spreadsheet_id, range_name, values)
 
     return jsonify(user_data)
-
-def calculate_score(answers):
+    def calculate_score(answers):
     score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
     for q_id, answer in answers.items():
         q_id = int(q_id)
-        if answer.strip() == correct_answers[q_id].strip():
+        if answer.strip() == correct_answers[q_id]:
             score['score'] += 2
             score['correct_count'] += 1
         else:
