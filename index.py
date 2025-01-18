@@ -412,7 +412,7 @@ def calculate_score(answers):
             score['score'] += 2
             score['correct_count'] += 1
         else:
-            score['score'] = 0
+            # score['score'] = 0
             score['wrong_count'] += 1
     return score
 
