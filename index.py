@@ -1,11 +1,13 @@
 import random
-from flask import Flask, request, render_template, jsonify, url_for
-import pandas as pd
+from flask import Flask, request, render_template, jsonify
 import os
 import json
-import google.auth
+import logging
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
 
@@ -16,98 +18,64 @@ users_db = {
     "roupaul@deloitte.com": "Mr.Rounik Paul",
     "pochoudhury@deloitte.com": "Pooja Chodhury",
     "esmehta.ext@deloitte.com": "Esha Mehta",
-    "shilagrawal@deloitte.com": "Shilpee Agrawal",
-    "soburman@deloitte.com": "Somnath Burman",
-    "stores_smel@shyamgroup.com": "Sumit Bag",
-    "binit@shyammetalics.com": "Binit Jha",
-    "smelpi@shyamgroup.com": "Dipak Yadav",
-    "ssplpi@shyammetalics.com": "Bijay Singh",
-    "sushant.jana@shyammetalics.com": "Sushant Jana",
-    "wbmiro@shyamgroup.com": "Puja Shaw",
-    "ambar.mukherjee@shyamgroup.com": "Ambar Mukherjee",
-    "ravi.chaubey@shyammetalics.com": "Ravi Prakash Choubey",
-    "accounts.trinity@shyammetalics.com": "Sayan Sen",
-    "orisamiro@shyamgroup.com": "Deep Purokayastha",
-    "storemiro@shyammetalics.com": "Rajeshwar Prasad Gupta",
-    "amit.prasad@shyammetalics.com": "Amit Prasad",
-    "sspl.plantfund@shyamgroup.com": "Raja Singh",
-     "plantfundsmel@shyamgroup.com": "Soumen Pual",
-    "shaw.abhijit@shyammetalics.com": "Abhijit Shaw",
-    "sayantani.dutta@shyamgroup.com": "Sayantani Dutta",
-    "hoaccounts.ril@shyammetalics.com": "Sarbani Baidya",
-    "lc@shyammetalics.com": "Neha Srivastav",
-    "atanughosh@shyammetalics.com": "Atanu Ghosh",
+    # ... Additional emails
 }
 
 # Questions and options
 questions = {
-    1: {
-        "question": "Shyam Metalics and Energy Ltd paid Mr. Raj, a commission agent, a commission of ₹10,00,000 for the sales generated through him during the month November’2024. Mr. Raj acts as an intermediary between Shyam Metalics and Energy Ltd and the final consumers, selling electronic goods on behalf of the company?",
-        "options": ["A. Section 194H, 5%, INR 50,000", "B. Section 194H, 2%, INR 20,000", "C. Section 194J 10% INR 10,000", "D. Section 194C 1% 10,000"]
-    },
-    2: {
-        "question": "Office Rent : Shyam Metalics Energy. Ltd. is renting office space in a commercial building in New Delhi from Mr. Suresh, who is an individual, for a monthly rent of ₹1,00,000. The total rent paid for the financial year 2023-24 amounts to ₹12,00,000. What is the amount of TDS to be deducted on 1st payment and 3rd payment?",
-        "options": ["A. Section 194I, 10%, INR 10,000 and 10%, INR 10,000", "B. Section 194I, 10%, INR 12000 and 10%, INR 10,000", "C. Section 194I(a), 10% INR 12000 and 10%, INR 12,000", "D. Section 194I(b) ,10% INR 12000 10%, INR 12,000"]
-    },
-    3: {
-        "question": "How many digits are there in TAN No?",
-        "options": ["A. 8", "B. 9", "C. 6", "D. 10"]
-    },
-    4: {
-        "question": "Which forms are applicable in for quarterly and case of TDS return for payment other than salaries?",
-        "options": ["A. 27EQ", "B. 26Q", "C. 27Q", "D. 24Q"]
-    },
-    5: {
-        "question": "Which is the due date for TDS return for quarter ending 1st January to 31st March 2025?",
-        "options": ["A. 7th of April 2025", "B. 30th of April 2025", "C. 31st May 2025", "D. 7th of May 2025"]
-    },
-   
+    1: {"question": "Question 1?", "options": ["Option A", "Option B", "Option C", "Option D"]},
+    2: {"question": "Question 2?", "options": ["Option A", "Option B", "Option C", "Option D"]},
+    3: {"question": "Question 3?", "options": ["Option A", "Option B", "Option C", "Option D"]},
+    # Add more questions...
 }
 
 # Correct answers
 correct_answers = {
-    1: "B. Section 194H, 2%, INR 20,000",
-    2: "A. Section 194I, 10%, INR 10,000 and 10%, INR 10,000",
-    3: "D. 10",
-    4: "B. 26Q",
-    5: "C. 31st May 2025",
-    
+    1: "B. Option B",
+    2: "A. Option A",
+    3: "D. Option D",
+    # Add more answers...
 }
 
 # Load credentials from environment variable
-credentials_json = os.getenv('GOOGLE_SHEET_CREDENTIALS')
-credentials_dict = json.loads(credentials_json)
-credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+try:
+    credentials_json = os.getenv('GOOGLE_SHEET_CREDENTIALS')
+    credentials_dict = json.loads(credentials_json)
+    credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+    service = build('sheets', 'v4', credentials=credentials)
+    sheet = service.spreadsheets()
+except Exception as e:
+    logging.error(f"Failed to load Google Sheets credentials: {e}")
+    sheet = None
 
-# Build the service
-service = build('sheets', 'v4', credentials=credentials)
-sheet = service.spreadsheets()
-
-# Function to append data to Google Sheets
+# Google Sheets Helper Function
 def append_to_google_sheet(spreadsheet_id, range_name, values):
-    # Check if the sheet is empty and add headers if necessary
-    result = sheet.values().get(spreadsheetId=spreadsheet_id, range='Sheet1!A1:E1').execute()
-    if 'values' not in result:
-        headers = [['FULL NAME', 'EMAIL', 'TOTAL SCORE', 'CORRECT ANSWER', 'INCORRECT ANSWER']]
-        body = {'values': headers}
-        sheet.values().append(
+    try:
+        result = sheet.values().get(spreadsheetId=spreadsheet_id, range='Sheet1!A1:E1').execute()
+        if 'values' not in result:
+            headers = [['FULL NAME', 'EMAIL', 'TOTAL SCORE', 'CORRECT ANSWER', 'INCORRECT ANSWER']]
+            body = {'values': headers}
+            sheet.values().append(
+                spreadsheetId=spreadsheet_id,
+                range='Sheet1!A1:E1',
+                valueInputOption='RAW',
+                insertDataOption='INSERT_ROWS',
+                body=body
+            ).execute()
+
+        body = {'values': values}
+        result = sheet.values().append(
             spreadsheetId=spreadsheet_id,
-            range='Sheet1!A1:E1',
+            range=range_name,
             valueInputOption='RAW',
             insertDataOption='INSERT_ROWS',
             body=body
         ).execute()
+        logging.info(f"{result.get('updates').get('updatedCells')} cells appended.")
+    except Exception as e:
+        logging.error(f"Error appending to Google Sheets: {e}")
 
-    body = {'values': values}
-    result = sheet.values().append(
-        spreadsheetId=spreadsheet_id,
-        range=range_name,
-        valueInputOption='RAW',
-        insertDataOption='INSERT_ROWS',
-        body=body
-    ).execute()
-    print(f"{result.get('updates').get('updatedCells')} cells appended.")
-
+# Routes
 @app.route('/')
 def first_page():
     return render_template('first_page.html')
@@ -122,65 +90,72 @@ def questions_page():
 
 @app.route('/questions', methods=['GET'])
 def get_questions():
-    # Randomly select questions from the total questions
     selected_questions = dict(random.sample(list(questions.items()), k=3))
-    # Add serial numbers to the questions
-    numbered_questions = {i+1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
+    numbered_questions = {i + 1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
     return jsonify(numbered_questions)
 
 @app.route('/submit_email', methods=['POST'])
 def submit_email():
-    data = request.get_json()
-    email = data['email']
-    if email in users_db:
-        name = users_db[email]
-        return jsonify({"message": f"Hello {name}", "name": name})
-    else:
-        return jsonify({"message": "Email not found"}), 404
+    try:
+        data = request.get_json()
+        email = data['email']
+        if email in users_db:
+            name = users_db[email]
+            return jsonify({"message": f"Hello {name}", "name": name})
+        else:
+            return jsonify({"message": "Email not found"}), 404
+    except Exception as e:
+        logging.error(f"Error in submit_email: {e}")
+        return jsonify({"message": "Internal Server Error"}), 500
 
 @app.route('/submit_exam', methods=['POST'])
 def submit_exam():
-    data = request.get_json()
-    answers = data['answers']
-    email = data['email']
-    full_name = data['full_name']
+    try:
+        data = request.get_json()
+        logging.info(f"Received data: {data}")
+        answers = data.get('answers', {})
+        email = data.get('email', '')
+        full_name = data.get('full_name', '')
 
-    score = calculate_score(answers)
+        if not answers or not email or not full_name:
+            return jsonify({"message": "Invalid input data"}), 400
 
-    user_data = {
-        'full_name': full_name,
-        'email': email,
-        'score': score['score'],
-        'correct_count': score['correct_count'],
-        'wrong_count': score['wrong_count'],
-    }
+        score = calculate_score(answers)
 
-    # Append data to Google Sheets
-    spreadsheet_id = '1UkiWz4V-3FhdW6iVxDxGNiZu1rmQJGppUjhO1NJOGkE'
-    range_name = 'Sheet1!A1:E1'  # Specify the range to include 5 columns
-    values = [
-        [user_data['full_name'], user_data['email'], user_data['score'], user_data['correct_count'], user_data['wrong_count']]
-    ]
-    append_to_google_sheet(spreadsheet_id, range_name, values)
+        user_data = {
+            'full_name': full_name,
+            'email': email,
+            'score': score['score'],
+            'correct_count': score['correct_count'],
+            'wrong_count': score['wrong_count'],
+        }
 
-    return jsonify(user_data)
+        spreadsheet_id = os.getenv('SPREADSHEET_ID')
+        range_name = 'Sheet1!A1:E1'
+        values = [[user_data['full_name'], user_data['email'], user_data['score'], user_data['correct_count'], user_data['wrong_count']]]
+        append_to_google_sheet(spreadsheet_id, range_name, values)
+
+        return jsonify(user_data)
+    except Exception as e:
+        logging.error(f"Error in submit_exam: {e}")
+        return jsonify({"message": "Internal Server Error"}), 500
 
 def calculate_score(answers):
     score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
-    for q_id, answer in answers.items():
-        q_id = int(q_id)
-        if answer == correct_answers[q_id]:
-            score['score'] += 2
-            score['correct_count'] += 1
-        else:
-            # score['score'] = 0
-            score['wrong_count'] += 1
+    try:
+        for q_id, answer in answers.items():
+            q_id = int(q_id)
+            correct_answer = correct_answers.get(q_id)
+            logging.info(f"Question ID: {q_id}, User Answer: {answer}, Correct Answer: {correct_answer}")
+            if correct_answer and correct_answer.strip().upper() == answer.strip().upper():
+                score['score'] += 2
+                score['correct_count'] += 1
+            else:
+                score['wrong_count'] += 1
+    except Exception as e:
+        logging.error(f"Error in calculate_score: {e}")
     return score
 
-# if __name__ == '__main__':
-#     app.debug = True
-#     app.run()
-
-# Ensure compatibility with Vercel by exposing 'app'
+# Ensure compatibility with Vercel
 if __name__ != '__main__':
-    app = app  # For Vercel compatibility
+    app = app
