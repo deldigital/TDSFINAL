@@ -217,7 +217,7 @@ questions = {
     },
     38: {
         "question": "Shyam Metalics Ltd. made an advance payment of 80'%' against Civil work for an individual contractor in November 2024. The total value of the (SO) was ₹50 lakhs. TDS was deducted at 2'%' on the advance payment of ₹40 lakhs (80'%' of ₹50 lakhs). The remaining balance payment for the first SO is still pending, and no invoices have been booked against this SO as of now. In December 2024, Shyam Metalics made another advance payment of 80'%' for a different (SO) valued at ₹60 lakhs. The second advance payment amounts to ₹48 lakhs (80% of ₹60 lakhs). The remaining payments and invoices for the second SO were booked in January 2024, but no bills were booked for the first SO as of this date. What is the correct TDS treatment against second SO at the time of advance payment?",
-        "options": ["A) 194C @2% INR 96,000", "B) 194C @1% INR 48,000", "C) 194C @2% INR 1,20,000", "D) 194C @1% INR 8000"],
+        "options": ["A) 194C @2% INR 96,000", "B) 194C @1% INR 48,000", "C) 194C @2% INR 1,20,000", "D) 194C @1% INR 8000"]
         
     },
     39: {
