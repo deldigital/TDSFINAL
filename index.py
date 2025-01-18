@@ -42,59 +42,36 @@ users_db = {
 # Questions and options
 questions = {
     1: {
-        "question": "Shyam Metalics and Energy Ltd paid Mr. Raj, a commission agent, a commission of ₹10,00,000 for the sales generated through him during November 2024. Mr. Raj acts as an intermediary between Shyam Metalics and Energy Ltd and the final consumers, selling electronic goods on behalf of the company.",
-        "options": {
-            "A": "Section 194H, 5%, INR 50,000",
-            "B": "Section 194H, 2%, INR 20,000",
-            "C": "Section 194J 10%, INR 10,000",
-            "D": "Section 194C 1%, INR 10,000",
-        },
+        "question": "Shyam Metalics and Energy Ltd paid Mr. Raj, a commission agent, a commission of ₹10,00,000 for the sales generated through him during the month November’2024. Mr. Raj acts as an intermediary between Shyam Metalics and Energy Ltd and the final consumers, selling electronic goods on behalf of the company?",
+        "options": ["A. Section 194H, 5%, INR 50,000", "B. Section 194H, 2%, INR 20,000", "C. Section 194J 10% INR 10,000", "D. Section 194C 1% 10,000"]
     },
     2: {
-        "question": "Office Rent: Shyam Metalics Energy Ltd is renting office space in a commercial building in New Delhi from Mr. Suresh, who is an individual, for ₹1,00,000 per month. The total rent paid for the financial year 2023-24 amounts to ₹12,00,000. What is the amount of TDS to be deducted on 1st and 3rd payments?",
-        "options": {
-            "A": "Section 194I, 10%, INR 10,000 and INR 10,000",
-            "B": "Section 194I, 10%, INR 12,000 and INR 10,000",
-            "C": "Section 194I(a), 10%, INR 12,000 and INR 12,000",
-            "D": "Section 194I(b), 10%, INR 12,000 and INR 12,000",
-        },
+        "question": "Office Rent : Shyam Metalics Energy. Ltd. is renting office space in a commercial building in New Delhi from Mr. Suresh, who is an individual, for a monthly rent of ₹1,00,000. The total rent paid for the financial year 2023-24 amounts to ₹12,00,000. What is the amount of TDS to be deducted on 1st payment and 3rd payment?",
+        "options": ["A. Section 194I, 10%, INR 10,000 and 10%, INR 10,000", "B. Section 194I, 10%, INR 12000 and 10%, INR 10,000", "C. Section 194I(a), 10% INR 12000 and 10%, INR 12,000", "D. Section 194I(b) ,10% INR 12000 10%, INR 12,000"]
     },
     3: {
         "question": "How many digits are there in TAN No?",
-        "options": {
-            "A": "8",
-            "B": "9",
-            "C": "6",
-            "D": "10",
-        },
+        "options": ["A. 8", "B. 9", "C. 6", "D. 10"]
     },
     4: {
-        "question": "Which forms are applicable for quarterly TDS return filings for payments other than salaries?",
-        "options": {
-            "A": "27EQ",
-            "B": "26Q",
-            "C": "27Q",
-            "D": "24Q",
-        },
+        "question": "Which forms are applicable in for quarterly and case of TDS return for payment other than salaries?",
+        "options": ["A. 27EQ", "B. 26Q", "C. 27Q", "D. 24Q"]
     },
     5: {
-        "question": "What is the due date for TDS return for the quarter ending 31st March 2025?",
-        "options": {
-            "A": "7th of April 2025",
-            "B": "30th of April 2025",
-            "C": "31st May 2025",
-            "D": "7th of May 2025",
-        },
+        "question": "Which is the due date for TDS return for quarter ending 1st January to 31st March 2025?",
+        "options": ["A. 7th of April 2025", "B. 30th of April 2025", "C. 31st May 2025", "D. 7th of May 2025"]
     },
+   
 }
 
 # Correct answers
 correct_answers = {
-    1: "B",
-    2: "A",
-    3: "D",
-    4: "B",
-    5: "C",
+    1: "B. Section 194H, 2%, INR 20,000",
+    2: "A. Section 194I, 10%, INR 10,000 and 10%, INR 10,000",
+    3: "D. 10",
+    4: "B. 26Q",
+    5: "C. 31st May 2025",
+    
 }
 
 # Load credentials from environment variable
