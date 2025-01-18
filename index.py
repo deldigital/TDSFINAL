@@ -31,7 +31,7 @@ users_db = {
     "storemiro@shyammetalics.com": "Rajeshwar Prasad Gupta",
     "amit.prasad@shyammetalics.com": "Amit Prasad",
     "sspl.plantfund@shyamgroup.com": "Raja Singh",
-     "plantfundsmel@shyamgroup.com": "Soumen Pual",
+    "plantfundsmel@shyamgroup.com": "Soumen Pual",
     "shaw.abhijit@shyammetalics.com": "Abhijit Shaw",
     "sayantani.dutta@shyamgroup.com": "Sayantani Dutta",
     "hoaccounts.ril@shyammetalics.com": "Sarbani Baidya",
@@ -61,17 +61,15 @@ questions = {
         "question": "Which is the due date for TDS return for quarter ending 1st January to 31st March 2025?",
         "options": ["A. 7th of April 2025", "B. 30th of April 2025", "C. 31st May 2025", "D. 7th of May 2025"]
     },
-   
 }
 
 # Correct answers
 correct_answers = {
-    1: "B. ",
-    2: "A. ",
-    3: "D. ",
-    4: "B. ",
-    5: "C. ",
-    
+    1: "B",
+    2: "A",
+    3: "D",
+    4: "B",
+    5: "C",
 }
 
 # Load credentials from environment variable
@@ -169,11 +167,10 @@ def calculate_score(answers):
     score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
     for q_id, answer in answers.items():
         q_id = int(q_id)
-        if answer == correct_answers[q_id]:
+        if answer.strip() == correct_answers[q_id]:
             score['score'] += 2
             score['correct_count'] += 1
         else:
-            # score['score'] = 0
             score['wrong_count'] += 1
     return score
 
@@ -183,4 +180,3 @@ def calculate_score(answers):
 
 # Ensure compatibility with Vercel by exposing 'app'
 if __name__ != '__main__':
-    app = app  # For Vercel compatibility
