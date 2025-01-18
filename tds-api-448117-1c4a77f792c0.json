@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "tds-api-448117",
+  "private_key_id": "1c4a77f792c010784995f9d9f939e04053b87e5f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDS2M6nejIJ46U1\n64F59opZkoVWoHmlw3KMkp52Jr2/a4DENg8J8fB5SRItNpwVxK1vYNIDQiEH4TAz\ndx7824fTPo56BnTXgbozdM4JBfCHebYQTEj4d/Cbdaqtrs2OdYRwlId7/mfinCpm\nXt2RcElvq87h6LML1nr64SfSuz5/SdKhAmRNVppbrEqwOh+G2o4Yn+7Pl2Z+LFf6\n0QE48mV5vAjtFhF2vJcJKMME7q4hMEYxPcIwmn11XBCPBgrMZwspji0M4TgdOsJo\nw5/H8HDhxsx7JJ5xPWBUwr1oD18jk/SYzb6JOhl/7tkxLdkF9c1rz77QNx7SFTLw\n9MnmFikBAgMBAAECggEAD6jppFe3irN9LEWLDsdoXCG9RINTtaOQCO/E1CqpciOm\nYyxOrqLpBOEP+AqzygwbA4gx4OsS7/ZiMZhZ1Vbqvh5Jz7dWC0GH1lWJDfOCe1Vn\nV8uKqeWimbFCFXdDrh59US0+6M8q4RJPNd4635fy5Ffi3DV/wtPRu3tojUa57BMp\ngAgHv8cvDBxi0Q/8pgdq5u6LRYkFxolyt2+NwwglZOO1q6j6vlh7/6J1fTV8bDy4\nHUHjH7PlmiQu9d9O7N1gJnmtXPtT6Hv8vPJJ88fkU3Bk/uvyFOz/CxqrR2q2fVnq\n95/LdbhjjaqkOpbVzXzPO7Rh4gjpuIvFycKF50Mm5wKBgQD16xVzMrfnfQOW5Bsq\nLSUwpyEkNcZvBCsgi3I01JTx3503BsL4Af2tgOAIUC90pTq/LwomaYGadVzer1L9\n7BLqk9XaWdELzu3eUdh8ppfQ5gNnag/r7ZqEeUx+PM2DeRbUtdguBTO/dnOIcf7d\nyOsfPYCFayiJO6rzOsD5+9VMcwKBgQDbfaYOl8UuIkxMiEJRC/iwSVEGL3TOXxdf\nGMlr+7VW78OKU5SH9vSykM53+2hwHgumnmDsnAxTu46xBCi2j5TX1EoRmzppYIeS\n6iIukNOpkHybZ90USu+e+YjKzQJ8z08qzCwgR6e4n7tT1nPv/iI7FCoP5xRUc88G\n9h0cANAruwKBgDlX8g6EuyF9o0KiOjthf5SSxEWfTIBCppPWMHFlSL4F+LEGIJyY\nSkEVFiiaGhbHGKXQIDvIynHsABXlKCMR029jvbBG1Vo9jHYU+7hFWI1btVt9/exz\n4V4WsuGU6A9KQyqipKBGkkSJKHOesWGiIkGMo9V4oWEuyrQg9TLVqG1FAoGAC+ms\n6pvYKuHXrEu09bslm0PPbvuCZnUIyrOIsyCtPfOzdD2HET4ZF9v+KMrvZy5qSXfN\nIOpzTNQgMYFdSFNQq8os3vnC2NdRZGrqwgZARrK94J1phWFv0fwPLZqk6OtDi7ob\nJwFcnAunWiyIjF0JtJUql0ReeRr0AJe5Cr0Mj2MCgYBtptM561vr5AzCqSUdMgfn\n+zjKczHqlUTGm4HZLuRYlc6+VPZShf4giD949VBJS6IEiG52DSOjIDcFxsVRGbv0\ntGM3+D9gGAFk6KzgoFjzFix7MIXfe6WPeuCEouABI4R932R1WA9zN9DoRFs2wq37\n6rkL6sEY5pYb7qKII0zxTA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "tds-exam-details@tds-api-448117.iam.gserviceaccount.com",
+  "client_id": "108825102451010743777",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tds-exam-details%40tds-api-448117.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

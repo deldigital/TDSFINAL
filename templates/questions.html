@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F5F5F5; /* Light gray background */
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #000000; /* Black background */
+            color: #FFFFFF; /* White text */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #86BC25; /* Deloitte Green */
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .question-box {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #86BC25; /* Deloitte Green */
+            text-align: left;
+            width: 100%;
+        }
+
+        .question-box p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .question-options {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .question-options input {
+            margin-right: 10px;
+        }
+
+        .question-options label {
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        #submitButton {
+            background-color: #27ae60;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #submitButton:hover {
+            background-color: #2ecc71;
+            transform: scale(1.05);
+        }
+
+        #timer {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #e74c3c;
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #progressBarContainer {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+            width: 200px;
+            background-color: #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #progressBar {
+            width: 0%;
+            height: 20px;
+            background-color: #86BC25; /* Deloitte Green */
+            border-radius: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+
+        #loadingSpinner {
+            display: none;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #86BC25; /* Deloitte Green */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #000000; /* Black background */
+            padding: 15px;
+            border-radius: 8px 8px 0 0; /* Rounded corners at the top */
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+        }
+
+        footer p {
+            margin: 0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quiz Questions</h1>
+    </header>
+    <main>
+        <div id="timer"></div>
+        <div id="progressBarContainer">
+            <div id="progressBar">0%</div>
+        </div>
+        <div id="examSection"></div>
+        <div id="resultSection"></div>
+        <div id="loadingSpinner"></div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Quiz App. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

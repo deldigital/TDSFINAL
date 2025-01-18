@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shyam Metalics Testing Environment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <style>
+        /* General Styling */
+        body {
+            background: #F5F5F5; /* Light gray background */
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            padding: 20px;
+            text-align: center;
+            background: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #86BC25; /* Deloitte Green */
+        }
+
+        .welcomeMessage {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Start Button Styling */
+        #startButton {
+            background-color: #86BC25;
+            color: white;
+            padding: 15px 32px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        #startButton:hover {
+            background-color: #6FAE1D; /* Darker green on hover */
+        }
+
+        /* Chatbot Icon Styling */
+        #chatbot {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Chatbox Styling */
+        #chatbox {
+            position: fixed;
+            bottom: 130px;
+            right: 20px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+            width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .bot-msg {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+
+        .question-btn {
+            background-color: #86BC25;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #6FAE1D;
+        }
+
+        .answer {
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        /* Footer Styling */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            color: white;
+            text-align: left;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        footer a {
+            color: #86BC25;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Loading Spinner */
+        #loadingSpinner {
+            display: none;
+            margin: auto;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #86BC25;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Layout to Prevent Overlap */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="https://www.shyammetalics.com/wp-content/uploads/2024/09/shyamlogo1.png" alt="XYZ Company Logo" class="logo">
+            <h1>Shyam Metalics Testing Environment</h1>
+            <p class="welcomeMessage">Thank you for registering for the TDS Online Test - January 2025</p>
+        </section>
+
+        <!-- Start Button -->
+        <button id="startButton" onclick="startTest()">START</button>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner"></div>
+    </div>
+
+    <!-- Chatbot Icon -->
+    <div id="chatbot" onclick="toggleChat()">😉</div>
+
+    <!-- Chatbox -->
+    <div id="chatbox">
+        <div class="bot-msg">Hello! How can I assist you today?</div>
+        <div id="questions"></div>
+        <div id="answerBox" class="answer"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 IT Digital. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        const predefinedQuestions = [
+            {
+                question: "How do I score the highest in the exam? 😎",
+                answer: "A little bit of strategy, focus, and a dash of magic! But mainly just stay calm and believe in yourself! 💪"
+            },
+            {
+                question: "What if the exam is tough? 💥",
+                answer: "Tough exams? Pfft! Just consider them as a good challenge. You’ve got this! 👊"
+            },
+            {
+                question: "Can I pass without studying? 🤔",
+                answer: "I wish I could say yes, but let's be real... studying makes all the difference! 📚"
+            },
+            {
+                question: "I’m nervous! 😬",
+                answer: "Nerves are just your body's way of getting ready for greatness! Embrace it! 🌟"
+            },
+            {
+                question: "What happens after I complete the test? 🎉",
+                answer: "You’ll get a well-deserved break, and your results will come through like a beam of light. Stay tuned! ⚡"
+            },
+            {
+                question: "What should I do to prepare better? 📅",
+                answer: "Consistency is key! And remember, even small progress is still progress! 🏆"
+            }
+        ];
+
+        function startTest() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            setTimeout(function () {
+                document.getElementById('loadingSpinner').style.display = 'none';
+                alert('Test Started!'); // Replace with actual test initiation
+            }, 2000);
+        }
+
+        function toggleChat() {
+            const chatbox = document.getElementById('chatbox');
+            chatbox.style.display = chatbox.style.display === 'none' ? 'block' : 'none';
+            if (chatbox.style.display === 'block') {
+                displayPredefinedQuestions();
+            }
+        }
+
+        function displayPredefinedQuestions() {
+            const questionsDiv = document.getElementById('questions');
+            const answerBox = document.getElementById('answerBox');
+            questionsDiv.innerHTML = ''; // Clear questions to avoid duplicates
+            answerBox.textContent = ''; // Clear any existing answer
+            predefinedQuestions.forEach((item) => {
+                const questionButton = document.createElement('button');
+                questionButton.className = 'question-btn';
+                questionButton.innerHTML = item.question;
+                questionButton.onclick = () => showAnswer(item.answer);
+                questionsDiv.appendChild(questionButton);
+            });
+        }
+
+        function showAnswer(answer) {
+            const answerBox = document.getElementById('answerBox');
+            answerBox.textContent = answer; // Replace the current answer with the new one
+        }
+    </script>
+</body>
+</html>
