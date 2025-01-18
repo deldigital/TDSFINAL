@@ -1,7 +1,9 @@
 import random
 from flask import Flask, request, render_template, jsonify, url_for
+import pandas as pd
 import os
 import json
+import google.auth
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
@@ -13,7 +15,28 @@ users_db = {
     "sushiagarwal@deloitte.com": "Sushil Agarwal",
     "roupaul@deloitte.com": "Mr.Rounik Paul",
     "pochoudhury@deloitte.com": "Pooja Chodhury",
-    # ... Add all other users
+    "esmehta.ext@deloitte.com": "Esha Mehta",
+    "shilagrawal@deloitte.com": "Shilpee Agrawal",
+    "soburman@deloitte.com": "Somnath Burman",
+    "stores_smel@shyamgroup.com": "Sumit Bag",
+    "binit@shyammetalics.com": "Binit Jha",
+    "smelpi@shyamgroup.com": "Dipak Yadav",
+    "ssplpi@shyammetalics.com": "Bijay Singh",
+    "sushant.jana@shyammetalics.com": "Sushant Jana",
+    "wbmiro@shyamgroup.com": "Puja Shaw",
+    "ambar.mukherjee@shyamgroup.com": "Ambar Mukherjee",
+    "ravi.chaubey@shyammetalics.com": "Ravi Prakash Choubey",
+    "accounts.trinity@shyammetalics.com": "Sayan Sen",
+    "orisamiro@shyamgroup.com": "Deep Purokayastha",
+    "storemiro@shyammetalics.com": "Rajeshwar Prasad Gupta",
+    "amit.prasad@shyammetalics.com": "Amit Prasad",
+    "sspl.plantfund@shyamgroup.com": "Raja Singh",
+     "plantfundsmel@shyamgroup.com": "Soumen Pual",
+    "shaw.abhijit@shyammetalics.com": "Abhijit Shaw",
+    "sayantani.dutta@shyamgroup.com": "Sayantani Dutta",
+    "hoaccounts.ril@shyammetalics.com": "Sarbani Baidya",
+    "lc@shyammetalics.com": "Neha Srivastav",
+    "atanughosh@shyammetalics.com": "Atanu Ghosh",
 }
 
 # Questions and options
@@ -75,113 +98,112 @@ correct_answers = {
 }
 
 # Load credentials from environment variable
-credentials_json = os.getenv("GOOGLE_SHEET_CREDENTIALS")
+credentials_json = os.getenv('GOOGLE_SHEET_CREDENTIALS')
 credentials_dict = json.loads(credentials_json)
 credentials = service_account.Credentials.from_service_account_info(credentials_dict)
 
 # Build the service
-service = build("sheets", "v4", credentials=credentials)
+service = build('sheets', 'v4', credentials=credentials)
 sheet = service.spreadsheets()
 
 # Function to append data to Google Sheets
 def append_to_google_sheet(spreadsheet_id, range_name, values):
     # Check if the sheet is empty and add headers if necessary
-    result = sheet.values().get(spreadsheetId=spreadsheet_id, range="Sheet1!A1:E1").execute()
-    if "values" not in result:
-        headers = [["FULL NAME", "EMAIL", "TOTAL SCORE", "CORRECT ANSWERS", "WRONG ANSWERS"]]
-        body = {"values": headers}
+    result = sheet.values().get(spreadsheetId=spreadsheet_id, range='Sheet1!A1:E1').execute()
+    if 'values' not in result:
+        headers = [['FULL NAME', 'EMAIL', 'TOTAL SCORE', 'CORRECT ANSWER', 'INCORRECT ANSWER']]
+        body = {'values': headers}
         sheet.values().append(
             spreadsheetId=spreadsheet_id,
-            range="Sheet1!A1:E1",
-            valueInputOption="RAW",
-            insertDataOption="INSERT_ROWS",
-            body=body,
+            range='Sheet1!A1:E1',
+            valueInputOption='RAW',
+            insertDataOption='INSERT_ROWS',
+            body=body
         ).execute()
 
-    body = {"values": values}
+    body = {'values': values}
     result = sheet.values().append(
         spreadsheetId=spreadsheet_id,
         range=range_name,
-        valueInputOption="RAW",
-        insertDataOption="INSERT_ROWS",
-        body=body,
+        valueInputOption='RAW',
+        insertDataOption='INSERT_ROWS',
+        body=body
     ).execute()
     print(f"{result.get('updates').get('updatedCells')} cells appended.")
 
-@app.route("/")
+@app.route('/')
 def first_page():
-    return render_template("first_page.html")
+    return render_template('first_page.html')
 
-@app.route("/index")
+@app.route('/index')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/questions_page")
+@app.route('/questions_page')
 def questions_page():
-    return render_template("questions.html")
+    return render_template('questions.html')
 
-@app.route("/questions", methods=["GET"])
+@app.route('/questions', methods=['GET'])
 def get_questions():
     # Randomly select questions from the total questions
     selected_questions = dict(random.sample(list(questions.items()), k=3))
     # Add serial numbers to the questions
-    numbered_questions = {i + 1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
+    numbered_questions = {i+1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
     return jsonify(numbered_questions)
 
-@app.route("/submit_email", methods=["POST"])
+@app.route('/submit_email', methods=['POST'])
 def submit_email():
     data = request.get_json()
-    email = data["email"]
+    email = data['email']
     if email in users_db:
         name = users_db[email]
         return jsonify({"message": f"Hello {name}", "name": name})
     else:
         return jsonify({"message": "Email not found"}), 404
 
-@app.route("/submit_exam", methods=["POST"])
+@app.route('/submit_exam', methods=['POST'])
 def submit_exam():
     data = request.get_json()
-    answers = data["answers"]
-    email = data["email"]
-    full_name = data["full_name"]
+    answers = data['answers']
+    email = data['email']
+    full_name = data['full_name']
 
-    # Calculate score
     score = calculate_score(answers)
 
     user_data = {
-        "full_name": full_name,
-        "email": email,
-        "score": score["score"],
-        "correct_count": score["correct_count"],
-        "wrong_count": score["wrong_count"],
+        'full_name': full_name,
+        'email': email,
+        'score': score['score'],
+        'correct_count': score['correct_count'],
+        'wrong_count': score['wrong_count'],
     }
 
     # Append data to Google Sheets
-    spreadsheet_id = "1UkiWz4V-3FhdW6iVxDxGNiZu1rmQJGppUjhO1NJOGkE"
-    range_name = "Sheet1!A1:E1"  # Specify the range to include 5 columns
+    spreadsheet_id = '1UkiWz4V-3FhdW6iVxDxGNiZu1rmQJGppUjhO1NJOGkE'
+    range_name = 'Sheet1!A1:E1'  # Specify the range to include 5 columns
     values = [
-        [user_data["full_name"], user_data["email"], user_data["score"], user_data["correct_count"], user_data["wrong_count"]],
+        [user_data['full_name'], user_data['email'], user_data['score'], user_data['correct_count'], user_data['wrong_count']]
     ]
     append_to_google_sheet(spreadsheet_id, range_name, values)
 
     return jsonify(user_data)
 
 def calculate_score(answers):
-    """Calculates the score based on user's answers."""
-    score = {"score": 0, "correct_count": 0, "wrong_count": 0}
+    score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
     for q_id, answer in answers.items():
-        q_id = int(q_id)  # Ensure question ID is an integer
-        correct_answer = correct_answers.get(q_id)
-        if not correct_answer:
-            print(f"Invalid question ID: {q_id}")
-            continue  # Skip invalid question IDs
-        if answer == correct_answer:
-            score["score"] += 2
-            score["correct_count"] += 1
+        q_id = int(q_id)
+        if answer == correct_answers[q_id]:
+            score['score'] += 2
+            score['correct_count'] += 1
         else:
-            score["wrong_count"] += 1
+            # score['score'] = 0
+            score['wrong_count'] += 1
     return score
 
+# if __name__ == '__main__':
+#     app.debug = True
+#     app.run()
+
 # Ensure compatibility with Vercel by exposing 'app'
-if __name__ != "__main__":
+if __name__ != '__main__':
     app = app  # For Vercel compatibility
