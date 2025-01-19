@@ -1,4 +1,3 @@
-import random
 from flask import Flask, request, render_template, jsonify, url_for
 import pandas as pd
 import os
@@ -31,7 +30,7 @@ users_db = {
     "storemiro@shyammetalics.com": "Rajeshwar Prasad Gupta",
     "amit.prasad@shyammetalics.com": "Amit Prasad",
     "sspl.plantfund@shyamgroup.com": "Raja Singh",
-     "plantfundsmel@shyamgroup.com": "Soumen Pual",
+    "plantfundsmel@shyamgroup.com": "Soumen Pual",
     "shaw.abhijit@shyammetalics.com": "Abhijit Shaw",
     "sayantani.dutta@shyamgroup.com": "Sayantani Dutta",
     "hoaccounts.ril@shyammetalics.com": "Sarbani Baidya",
@@ -122,8 +121,8 @@ def questions_page():
 
 @app.route('/questions', methods=['GET'])
 def get_questions():
-    # Randomly select questions from the total questions
-    selected_questions = dict(random.sample(list(questions.items()), k=3))
+    # Select questions from the total questions
+    selected_questions = dict(list(questions.items())[:3])
     # Add serial numbers to the questions
     numbered_questions = {i+1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
     return jsonify(numbered_questions)
