@@ -364,10 +364,14 @@ def calculate_score(answers):
     for q_id, answer in answers.items():
         q_id = int(q_id)
         correct_answer = correct_answers[q_id]
+        user_answer_first_char = answer.strip().upper()[0]
+        correct_answer_first_char = correct_answer.strip().upper()[0]
         print(f"Question ID: {q_id}")
         print(f"User's Answer: '{answer.strip()}'")
         print(f"Correct Answer: '{correct_answer}'")
-        if answer.strip().upper()[0] == correct_answer.strip().upper()[0]:  # Compare only the first character, case-insensitive
+        print(f"User's Answer First Char: '{user_answer_first_char}'")
+        print(f"Correct Answer First Char: '{correct_answer_first_char}'")
+        if user_answer_first_char == correct_answer_first_char:  # Compare only the first character, case-insensitive
             score['score'] += 2
             score['correct_count'] += 1
         else:
