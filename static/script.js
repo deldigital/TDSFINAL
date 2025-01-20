@@ -32,24 +32,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email }),
                 })
-                .then((response) => {
-                    if (response.ok) return response.json();
-                    else throw new Error('Email not found');
-                })
-                .then((data) => {
-                    console.log('Email verified:', data.message);
-                    const welcomeMessage = document.getElementById('welcomeMessage');
-                    welcomeMessage.innerHTML = `<span class="welcome-text">Hello ${data.name} &#128522;</span>`;
-                    const viewRulesButton = document.getElementById('viewRulesButton');
-                    console.log('viewRulesButton:', viewRulesButton);
-                    if (viewRulesButton) {
-                        viewRulesButton.style.display = 'block';
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    document.getElementById('welcomeMessage').innerText = 'Email not found. Please try again.';
-                });
+                    .then((response) => {
+                        if (response.ok) return response.json();
+                        else throw new Error('Email not found');
+                    })
+                    .then((data) => {
+                        console.log('Email verified:', data.message);
+                        const welcomeMessage = document.getElementById('welcomeMessage');
+                        welcomeMessage.innerHTML = `<span class="welcome-text">Hello ${data.name} &#128522;</span>`;
+                        const viewRulesButton = document.getElementById('viewRulesButton');
+                        console.log('viewRulesButton:', viewRulesButton);
+                        if (viewRulesButton) {
+                            viewRulesButton.style.display = 'block';
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        document.getElementById('welcomeMessage').innerText = 'Email not found. Please try again.';
+                    });
             } else {
                 console.error('Email input element not found.');
             }
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const optionDiv = document.createElement('div');
                 optionDiv.classList.add('question-options');
                 optionDiv.innerHTML = ` <input type="radio" name="question-${q_id}" value="${option}" data-original-id="${question.original_id}"> <label>${option}</label> `;
-                optionDiv.querySelector('input').addEventListener('change', function() {
+                optionDiv.querySelector('input').addEventListener('change', function () {
                     if (!answeredQuestionsSet.has(q_id)) {
                         answeredQuestions++;
                         answeredQuestionsSet.add(q_id);
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             examSection.appendChild(questionDiv);
         });
-    
+
         const submitButton = document.createElement('button');
         submitButton.id = 'submitButton';
         submitButton.textContent = 'Submit';
@@ -139,12 +139,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ answers: answers, email: email, full_name: fullName }),
                 })
-                .then((response) => response.json())
-                .then((data) => {
-                    displayResults(data);
-                    triggerConfetti(); // Trigger confetti celebration
-                })
-                .catch((error) => console.error('Error submitting exam:', error));
+                    .then((response) => response.json())
+                    .then((data) => {
+                        displayResults(data);
+                        triggerConfetti(); // Trigger confetti celebration
+                    })
+                    .catch((error) => console.error('Error submitting exam:', error));
             } else {
                 console.error('Email or full name not found or empty.');
             }
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
             progressBar.textContent = `${Math.round(progress)}%`;
         }
         // Collect answers from the form
-        function collectAnswers() {   
+        function collectAnswers() {
             const answers = {};
             const questionElements = document.querySelectorAll('[name^="question-"]');
             questionElements.forEach((el) => {
@@ -252,25 +252,25 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('fullNameInput:', fullNameInput);
     console.log('confirmRulesButton:', confirmRulesButton);
     if (btn && modal && span && rulesCheckbox && fullNameInput && confirmRulesButton) {
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = 'block';
         }
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = 'none';
         }
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
             }
         }
         // Enable confirm button only if checkbox is checked and full name is provided
-        rulesCheckbox.addEventListener('change', function() {
+        rulesCheckbox.addEventListener('change', function () {
             confirmRulesButton.disabled = !(rulesCheckbox.checked && fullNameInput.value.trim() !== '');
         });
-        fullNameInput.addEventListener('input', function() {
+        fullNameInput.addEventListener('input', function () {
             confirmRulesButton.disabled = !(rulesCheckbox.checked && fullNameInput.value.trim() !== '');
         });
-        confirmRulesButton.addEventListener('click', function() {
+        confirmRulesButton.addEventListener('click', function () {
             modal.style.display = 'none';
             const startExamButton = document.getElementById('startButton');
             console.log('startExamButton:', startExamButton);
