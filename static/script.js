@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     answers[q_id] = { answer: el.value.trim(), original_id: original_id }; // Include original ID
                 }
             });
-            console.log('Collected answers:', answers);
+            console.log('Collected answers:', answers);  // Debug print
             return answers;
         }
     }
