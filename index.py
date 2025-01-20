@@ -283,7 +283,7 @@ def calculate_score(answers):
         print(f"Question ID: {q_id}")
         print(f"User's Answer: '{answer.strip()}'")
         print(f"Correct Answer: '{correct_answer}'")
-        if answer.strip() == correct_answer:
+        if answer.strip()[0] == correct_answer[0]:  # Compare only the first character
             score['score'] += 2
             score['correct_count'] += 1
         else:
