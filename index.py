@@ -279,7 +279,11 @@ def calculate_score(answers):
     score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
     for q_id, answer in answers.items():
         q_id = int(q_id)
-        if answer.strip() == correct_answers[q_id]:
+        correct_answer = correct_answers[q_id]
+        print(f"Question ID: {q_id}")
+        print(f"User's Answer: {answer.strip()}")
+        print(f"Correct Answer: {correct_answer}")
+        if answer.strip() == correct_answer:
             score['score'] += 2
             score['correct_count'] += 1
         else:
