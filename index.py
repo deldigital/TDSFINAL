@@ -337,6 +337,7 @@ def submit_email():
 @app.route('/submit_exam', methods=['POST'])
 def submit_exam():
     data = request.get_json()
+    print(f"Received data: {data}")  # Debug print to check received data
     answers = data['answers']
     email = data['email']
     full_name = data['full_name']
@@ -359,6 +360,7 @@ def submit_exam():
     ]
     append_to_google_sheet(spreadsheet_id, range_name, values)
 
+    print(f"Response data: {user_data}")  # Debug print to check response data
     return jsonify(user_data)
 
 def calculate_score(answers):
