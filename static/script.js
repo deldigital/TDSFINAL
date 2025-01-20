@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Collected answers:', answers);
             return answers;
         }
+    }
 
     // Display results on the page
     function displayResults(data) {
