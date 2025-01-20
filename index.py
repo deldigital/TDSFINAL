@@ -210,7 +210,7 @@ questions = {
     },
     37: {
         "question": "Section 194C provides for deduction of tax at source on the payments made to ____________ contractors/ sub-contractors?",
-        "options": ["Resident", "B. Non-resident", "C. Both resident and non-resident", "D. None of the above"]
+        "options": ["A. Resident", "B. Non-resident", "C. Both resident and non-resident", "D. None of the above"]
         
     },
     38: {
@@ -367,7 +367,7 @@ def calculate_score(answers):
         print(f"Question ID: {q_id}")
         print(f"User's Answer: '{answer.strip()}'")
         print(f"Correct Answer: '{correct_answer}'")
-        if answer.strip()[0] == correct_answer[0]:  # Compare only the first character
+        if answer.strip().upper()[0] == correct_answer.strip().upper()[0]:  # Compare only the first character, case-insensitive
             score['score'] += 2
             score['correct_count'] += 1
         else:
