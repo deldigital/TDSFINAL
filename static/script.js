@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             question.options.forEach((option) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.classList.add('question-options');
-                optionDiv.innerHTML = ` <input type="radio" name="question-${q_id}" value="${option[0]}"> <label>${option}</label> `;
+                optionDiv.innerHTML = ` <input type="radio" name="question-${q_id}" value="${option}"> <label>${option}</label> `;
                 optionDiv.querySelector('input').addEventListener('change', function() {
                     answeredQuestions++;
                     updateProgressBar();
@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             examSection.appendChild(questionDiv);
         });
-
         const submitButton = document.createElement('button');
         submitButton.id = 'submitButton';
         submitButton.textContent = 'Submit';
