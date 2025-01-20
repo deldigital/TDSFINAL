@@ -320,9 +320,10 @@ def questions_page():
 def get_questions():
     # Randomly select 25 questions from the pool of 60 questions
     selected_questions = random.sample(list(questions.items()), 25)
-    numbered_questions = {i+1: q for i, (q_id, q) in enumerate(selected_questions)}
+    numbered_questions = {i+1: {'original_id': q_id, 'question': q['question'], 'options': q['options']} for i, (q_id, q) in enumerate(selected_questions)}
     print(f"Selected questions: {numbered_questions}")  # Debug print
     return jsonify(numbered_questions)
+
 @app.route('/submit_email', methods=['POST'])
 def submit_email():
     data = request.get_json()
@@ -362,17 +363,15 @@ def submit_exam():
 
 def calculate_score(answers):
     score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
-    for q_id, answer in answers.items():
+    for q_id, answer_data in answers.items():
         q_id = int(q_id)
-        correct_answer = correct_answers[q_id]
-        user_answer_first_char = answer.strip().upper()[0]
-        correct_answer_first_char = correct_answer.strip().upper()[0]
+        original_id = answer_data['original_id']
+        user_answer = answer_data['answer']
+        correct_answer = correct_answers[original_id]
         print(f"Question ID: {q_id}")
-        print(f"User's Answer: '{answer.strip()}'")
+        print(f"User's Answer: '{user_answer.strip()}'")
         print(f"Correct Answer: '{correct_answer}'")
-        print(f"User's Answer First Char: '{user_answer_first_char}'")
-        print(f"Correct Answer First Char: '{correct_answer_first_char}'")
-        if user_answer_first_char == correct_answer_first_char:  # Compare only the first character, case-insensitive
+        if user_answer.strip().upper()[0] == correct_answer.strip().upper()[0]:  # Compare only the first character, case-insensitive
             score['score'] += 2
             score['correct_count'] += 1
         else:
