@@ -110,21 +110,19 @@ document.addEventListener('DOMContentLoaded', function () {
             question.options.forEach((option) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.classList.add('question-options');
-                optionDiv.innerHTML = ` <input type="radio" name="question-${q_id}" value="${option}"> <label>${option}</label> `;
+                optionDiv.innerHTML = ` <input type="radio" name="question-${q_id}" value="${option}" data-original-id="${question.original_id}"> <label>${option}</label> `;
                 optionDiv.querySelector('input').addEventListener('change', function() {
                     if (!answeredQuestionsSet.has(q_id)) {
                         answeredQuestions++;
                         answeredQuestionsSet.add(q_id);
                         updateProgressBar();
                     }
-                }
-            );
+                });
                 questionDiv.appendChild(optionDiv);
-            }
-        );
+            });
             examSection.appendChild(questionDiv);
-        }
-    );
+        });
+    
         const submitButton = document.createElement('button');
         submitButton.id = 'submitButton';
         submitButton.textContent = 'Submit';
@@ -165,10 +163,10 @@ document.addEventListener('DOMContentLoaded', function () {
             questionElements.forEach((el) => {
                 if (el.checked) {
                     const q_id = el.name.split('-')[1];
-                    answers[q_id] = el.value.trim(); // Trim the value to remove any extra spaces
-                    }
+                    const original_id = el.dataset.originalId;  // Assuming you add data-original-id attribute to each question
+                    answers[q_id] = { answer: el.value.trim(), original_id: original_id }; // Include original ID
                 }
-            );
+            });
             console.log('Collected answers:', answers);
             return answers;
         }
