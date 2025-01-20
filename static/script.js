@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
 
+    const answeredQuestionsSet = new Set();
+
     // Redirect to the main page (index.html) from the first page
     const startButton = document.getElementById('startButton');
     console.log('startButton:', startButton);
@@ -150,17 +152,17 @@ document.addEventListener('DOMContentLoaded', function () {
             progressBar.style.width = `${progress}%`;
             progressBar.textContent = `${Math.round(progress)}%`;
         }
-
         // Collect answers from the form
-        function collectAnswers() {
+        function collectAnswers() {   
             const answers = {};
             const questionElements = document.querySelectorAll('[name^="question-"]');
             questionElements.forEach((el) => {
                 if (el.checked) {
                     const q_id = el.name.split('-')[1];
                     answers[q_id] = el.value.trim(); // Trim the value to remove any extra spaces
+                    }
                 }
-            });
+            );
             console.log('Collected answers:', answers);
             return answers;
         }
