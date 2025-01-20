@@ -5,6 +5,7 @@ import json
 import google.auth
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+import random
 
 app = Flask(__name__)
 
@@ -149,12 +150,81 @@ questions = {
     },
     25: {
         "question": "Combo Ltd., a newly established business in the month Dec’24 with small operation, has started selling raw materials (steel) to Shyam Metalics, a manufacturing company. Steel Traders Pvt. Ltd. made its first sale to ABC Enterprises worth ₹70,00,000. The purchase was made on October 15, 2025, and the payment terms are 45 days from the date of invoice. (assume buyers turnover does not exceed 10 Cr). What will be the TDS treatment?",
+        "options": ["A. 194C, @1 %,INR 700", "B. 194C, @2%,INR 1,00,000 ", "C. 194I(a) @2% 1400", "D. 194I(a) @10% 7,000"]
+        
+    },
+    26: {
+        "question": "For production requirement the company has been taken a machinery on rent from an Individual. The value of machinery was INR 50 lacs as per WDV. Rent is being made 70,000 p.m. What is rate of TDS and section as per Income Tax Act,1961.",
         "options": ["A. 194C @2% INR 1,40,000", "B. 194Q @1% INR 70,000", "C. 194Q @0.1% INR 2,000", "D. NIL"]
         
     },
-
-   
-}
+    27: {
+        "question": "BK Engineering has provided labor for the month of October 2024 for production to Shyam Metalics Ltd., amounting to INR 43,00,000. In addition, they supplied materials worth INR 15,00,000. (assume the material portion not separately identifiable)What is the amount TDS to be deducted?",
+        "options": ["194J, @20 %, INR 8,60,000 and 194Q 0.1% INR 1500", "B. 194C, @2 %, INR 86,000 and 194Q 0.1% INR 1500", "C. 194C, @1% INR 43,000 and 194Q 0.1% INR 1500", "D. 194C @1% INR 58,000"]
+        
+    },
+    28: {
+        "question": "Shyam Metallics Energy Ltd. is a manufacturing company with a turnover of ₹200 crore in the previous financial year. The company has appointed Mr. Rajesh as its Non-Executive Director and is paying him sitting fees for the current financial year as a part of his salary. Sitting was made 38.5% of his monthly salary and bonus for the year.Director's Remuneration:•	Monthly Salary: ₹2,00,000•	Bonus for the year: ₹5,00,000 (as per the board's decision)•	Perquisites: ₹1,00,000 for the financial year (housing rent allowance and car expenses paid by the company)What is the amount TDS to be deducted?",
+        "options": ["A. 194J, @20 %, INR 40,000", "B. NIL as payment made to non-executive director", "C. 194J @10% INR 26,950", "D. 194J @10% INR 70,000"]
+        
+    },
+    29: {
+        "question": "As per section 1941, in respect of rent of which of to be deducted @10% from the amount of rent?",
+        "options": ["A. Land", "B. Furniture or fittings", "C. Building", "D. All of the above"]
+        
+    },
+    30: {
+        "question": "Form no. applicable for TDS in respect of salary is:",
+        "options": ["A. 15", "B. 17", "C. 16", "D. 18"]
+        
+    },
+    31: {
+        "question": "A deductor is liable to obtain TAN in respect of tax deducted under which of the following sections?",
+        "options": ["A. 194IB", "B. 194IA", "C. Both (A) and (B)", "D. None of the above"]
+        
+    },
+    32: {
+        "question": "Shyam Metalics Ltd.. has purchased a rural agricultural land from Mr. Kisaan for Rs. 60,00,000. Determine the amount of TDS to be deducted u/s 194IA assuming the Seller has a PAN?",
+        "options": ["A. Rs. 60,000", "B. Rs. 1,20,000", "C. Rs. 3,00,000", "D. NIL"]
+        
+    },
+    33: {
+        "question": "Shyam Metalics Ltd.. has to pay yearly rent for its official premises to Mr. Ram amounting to Rs. 1,50,000. Determine the amount of TDS to be deducted u/s 194I?",
+        "options": ["A. Rs. 3,000", "B. Rs. 15,000", "C. Rs. 7,500", "D. NIL"]
+        
+    },
+    34: {
+        "question": "Shyam Metalics Ltd. manufactured certain toy cars for ABC Private Limited, for which the necessary material was provided by AEC Private Limited. The service charges for such work were Rs. 50,000, which was included in the gross amount of material supplied, worth Rs. 5,00,000. In such a case, the TDS deducted would be ",
+        "options": ["A. Rs. 1,000", "B. Rs. 10,000", "C. Rs. 500", "D. Rs. 5,000"]
+        
+    },
+    35: {
+        "question": "Which of the following would be included in the definition of works contract for purpose of Section 194C?",
+        "options": ["A. Shyam Metalics Ltd. has made contract with YO India for manufacturing a product according to specification of customer. XY India will provide material for manufacturing of such product", "B.Shyam Metalics Ltd. has made contract with YO India for manufacturing a product according to specification of customer. XY India will not provide material for manufacturing of such product and YO India will purchase material from third party.", "C. Both (A) and (B)", "D.None of the above"]
+        
+    },
+    36: {
+        "question": "Shyam Metalics Ltd. has to make payment of Rs. 50,000 per month to Mr. Jetha for operation and maintenance of factory premises. At what rate, TDS would be deducted under section 194C?",
+        "options": ["A. 2%", "1%", "C. 0%", "D.10%"]
+        
+    },
+    37: {
+        "question": "Section 194C provides for deduction of tax at source on the payments made to ____________ contractors/ sub-contractors?",
+        "options": ["Resident", "B. Non-resident", "C. Both resident and non-resident", "D. None of the above"]
+        
+    },
+    38: {
+        "question": "Interest on securities would attract TDS under Section 193 @?",
+        "options": ["A. 5%", "B. 10%", "C. 20%", "D. None of the above"]
+        
+    },
+    39: {
+        "question": "Any person responsible for paying salaries shall be required to deduct tax at source at the ___________",
+        "options": ["A. Time of credit of account of employee", "B. Time of payment", "C. (A) or (B), whichever is earlier", "D. None of the above"]
+        
+    },
+    
+    }
 
 # Correct answers
 correct_answers = {
@@ -183,6 +253,20 @@ correct_answers = {
     23: "C.",
     24: "D.",
     25: "D.",
+    26: "C.",
+    27: "D.",
+    28: "C.",
+    29: "D.",
+    30: "C.",
+    31: "D.",
+    32: "D.",
+    33: "D.",
+    34: "B.",
+    35: "A.",
+    36: "B.",
+    37: "A.",
+    38: "B.",
+    39: "B.",
     
 }
 
@@ -234,10 +318,10 @@ def questions_page():
 
 @app.route('/questions', methods=['GET'])
 def get_questions():
-    # Return all questions
-    numbered_questions = {i+1: questions[q_id] for i, q_id in enumerate(questions)}
+    # Randomly select 25 questions from the pool of 60 questions
+    selected_questions = random.sample(list(questions.items()), 25)
+    numbered_questions = {i+1: q for i, (q_id, q) in enumerate(selected_questions)}
     return jsonify(numbered_questions)
-
 @app.route('/submit_email', methods=['POST'])
 def submit_email():
     data = request.get_json()
