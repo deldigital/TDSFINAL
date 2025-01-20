@@ -232,17 +232,11 @@ def index():
 def questions_page():
     return render_template('questions.html')
 
-app.route('/questions', methods=['GET'])
+@app.route('/questions', methods=['GET'])
 def get_questions():
-    # Shuffle questions for each user
-    question_ids = list(questions.keys())
-    random.shuffle(question_ids)
-    
-    shuffled_questions = {i+1: questions[q_id] for i, q_id in enumerate(question_ids)}
-    
-    print("Shuffled Questions:", shuffled_questions)  # Debug statement
-    
-    return jsonify(shuffled_questions)
+    # Return all questions
+    numbered_questions = {i+1: questions[q_id] for i, q_id in enumerate(questions)}
+    return jsonify(numbered_questions)
 
 @app.route('/submit_email', methods=['POST'])
 def submit_email():
