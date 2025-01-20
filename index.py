@@ -321,6 +321,7 @@ def get_questions():
     # Randomly select 25 questions from the pool of 60 questions
     selected_questions = random.sample(list(questions.items()), 25)
     numbered_questions = {i+1: q for i, (q_id, q) in enumerate(selected_questions)}
+    print(f"Selected questions: {numbered_questions}")  # Debug print
     return jsonify(numbered_questions)
 @app.route('/submit_email', methods=['POST'])
 def submit_email():
