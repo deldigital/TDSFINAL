@@ -235,7 +235,7 @@ def questions_page():
 @app.route('/questions', methods=['GET'])
 def get_questions():
     # Select questions from the total questions
-    selected_questions = dict(list(questions.items())[:3])
+    selected_questions = dict(questions)
     # Add serial numbers to the questions
     numbered_questions = {i+1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
     return jsonify(numbered_questions)
