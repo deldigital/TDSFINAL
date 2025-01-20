@@ -111,9 +111,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 const optionDiv = document.createElement('div');
                 optionDiv.classList.add('question-options');
                 optionDiv.innerHTML = ` <input type="radio" name="question-${q_id}" value="${option}"> <label>${option}</label> `;
-                optionDiv.querySelector('input').addEventListener('change', function() {
+                optionDiv.querySelector('input').addEventListener('change', function() {if (!answeredQuestionsSet.has(q_id)) {
                     answeredQuestions++;
+                    answeredQuestionsSet.add(q_id);
                     updateProgressBar();
+                }
                 });
                 questionDiv.appendChild(optionDiv);
             });
