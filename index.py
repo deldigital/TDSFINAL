@@ -281,8 +281,8 @@ def calculate_score(answers):
         q_id = int(q_id)
         correct_answer = correct_answers[q_id]
         print(f"Question ID: {q_id}")
-        print(f"User's Answer: {answer.strip()}")
-        print(f"Correct Answer: {correct_answer}")
+        print(f"User's Answer: '{answer.strip()}'")
+        print(f"Correct Answer: '{correct_answer}'")
         if answer.strip() == correct_answer:
             score['score'] += 2
             score['correct_count'] += 1
