@@ -94,62 +94,62 @@ questions = {
     },
     14: {
         "question": "Shyam Metalics, a company, is making a payment of ₹1,00,000 to Indian Railways for transportation of goods provided during the financial year. According to Section 194C of the Income Tax Act, what is the correct TDS treatment for this payment?",
-        "options": ["A) No TDS is applicable.", "B) TDS is required, and the rate of TDS will be 1% INR 1000", "C) TDS is required, and the rate of TDS will be 2% INR 2000", "D) TDS is required, and the rate of TDS will be 10% INR 10,000"]
+        "options": ["A. No TDS is applicable.", "B. TDS is required, and the rate of TDS will be 1% INR 1000", "C. TDS is required, and the rate of TDS will be 2% INR 2000", "D. TDS is required, and the rate of TDS will be 10% INR 10,000"]
         
     },
     15: {
         "question": "Shyam Metalics, a company, makes a payment of ₹60,000 to a transporter Fast transport Pvt Ltd, who owns 12 vehicles for the transportation of goods during the financial year. what is the correct TDS treatment for this payment?",
-        "options": ["A) TDS to be deducted @10% INR 6,000 as per 194J.", "B) TDS to be deducted @1% INR 600 as per 194C.", "C) TDS to be deducted @2% INR 1,200 as per 194C", "D) No TDS is applicable since the transporter doesn’t own more than 15 vehicle."]
+        "options": ["A. TDS to be deducted @10% INR 6,000 as per 194J.", "B. TDS to be deducted @1% INR 600 as per 194C.", "C. TDS to be deducted @2% INR 1,200 as per 194C", "D. No TDS is applicable since the transporter doesn’t own more than 15 vehicle."]
         
     },
     16: {
         "question": "During the winter season Shyam Metalics, has organized a sports event where it has made a payment of ₹110,000 to an event manager an individual for organizing a sports activity. what is the correct TDS treatment for this payment?",
-        "options": ["A) No TDS is applicable.", "B) TDS is required as per 194C, and the rate of TDS will be 1% INR 1100", "C) TDS is required as per 194J, and the rate of TDS will be 10% INR 11,000", "D) TDS is required as per 194C, and the rate of TDS will be 2% INR 2200"]
+        "options": ["A. No TDS is applicable.", "B. TDS is required as per 194C, and the rate of TDS will be 1% INR 1100", "C. TDS is required as per 194J, and the rate of TDS will be 10% INR 11,000", "D. TDS is required as per 194C, and the rate of TDS will be 2% INR 2200"]
         
     },
     17: {
         "question": "Shyam Metalics, a manufacturing company, has made a payment of ₹5,00,000 on 31st Oct’24 to a distributor for selling its products in the market during the financial year. The distributor is an individual and has provided a service agreement with a fixed commission structure. which of the following is the correct TDS treatment for this payment?",
-        "options": ["A) 194C @1% INR 5,000", "B) 194I @10% INR 50,000", "C) TDS is applicable 194H at the rate of 10% as the payment is for commission on sales INR 50,000", "D) TDS is applicable 194H at the rate of 2% as the payment is for commission on sales INR 10,000"]
+        "options": ["A. 194C @1% INR 5,000", "B. 194I @10% INR 50,000", "C. TDS is applicable 194H at the rate of 10% as the payment is for commission on sales INR 50,000", "D. TDS is applicable 194H at the rate of 2% as the payment is for commission on sales INR 10,000"]
         
     },
     18: {
         "question": "Shyam Metalics, a company, has paid ₹12,00,000 on 31st December’24 as commission to an agent for promoting its products. The agent is an individual. The payment is made in installments, and the total commission paid in the financial year exceeds ₹15,000. The agent has not provided a PAN. According to Section 194H of the Income Tax Act, what is the correct TDS treatment for this payment?",
-        "options": ["A) TDS is applicable at the rate of 10% as PAN is irrelevant under this case.", "B) TDS is applicable at the rate of 5% due to non-furnishing of PAN", "C) TDS is applicable at the rate of 20% due to non-furnishing of PAN", "D) TDS is not applicable if the payment is made in installments."]
+        "options": ["A. TDS is applicable at the rate of 10% as PAN is irrelevant under this case.", "B. TDS is applicable at the rate of 5% due to non-furnishing of PAN", "C. TDS is applicable at the rate of 20% due to non-furnishing of PAN", "D. TDS is not applicable if the payment is made in installments."]
         
     },
     19: {
         "question": "Shyam Metalics, a company, has paid ₹2,50,000 as rent for office premises to a landlord who is an individual during the financial year 24-25. The landlord is a resident individual and has provided a valid PAN. what is the correct TDS treatment for this payment?",
-        "options": ["A) TDS is applicable at the rate of 1% as PAN is irrelevant under this case.", "B) TDS is applicable at the rate of 2% since payment is made to individual.", "C) TDS is applicable at the rate of 10% since payment made to individual.", "D) TDS is not applicable since exceeds 2,40,000."]
+        "options": ["A. TDS is applicable at the rate of 1% as PAN is irrelevant under this case.", "B. TDS is applicable at the rate of 2% since payment is made to individual.", "C. TDS is applicable at the rate of 10% since payment made to individual.", "D. TDS is not applicable since exceeds 2,40,000."]
         
     },
     20: {
         "question": "Shyam Metalics, a manufacturing company, has paid ₹8,50,000 as rent for the use of machinery during the financial year. The payment is made to a private limited company, which is the owner of the machinery. The total rent paid for plant and machinery during the year exceeds ₹2,40,000. The machinery is used for the company's production process. The company has provided a valid PAN. According to Section 194I of the Income Tax Act, what is the correct TDS treatment for this payment?",
-        "options": ["A) TDS is applicable at the rate of 10% for rent on plant and machinery", "B) TDS is applicable at the rate of 2% for rent on plant and machinery", "C) TDS is applicable at the rate of 10% for rent on machinery paid to a company", "D) TDS is not applicable as the rent is paid to a private limited company"]
+        "options": ["A. TDS is applicable at the rate of 10% for rent on plant and machinery", "B. TDS is applicable at the rate of 2% for rent on plant and machinery", "C. TDS is applicable at the rate of 10% for rent on machinery paid to a company", "D. TDS is not applicable as the rent is paid to a private limited company"]
         
     },
     21: {
         "question": "Shyam Metalics, a manufacturing company, has entered into a lease agreement for land with a landlord, where the company is required to pay a lease premium of ₹15,00,000 during the financial year. The lease agreement specifies that this payment is a one-time lease premium for the lease of land and not periodic rent. The landlord is a resident individual and has provided a valid PAN. According to Section 194I of the Income Tax Act, what is the correct TDS treatment for this lease premium payment?",
-        "options": ["A) TDS is applicable at the rate of 10% as the lease premium is treated as rent", "B) TDS is applicable at the rate of 20% due to the non-periodic nature of the lease premium", "C) TDS is applicable at the rate of 2% for lease premium paid for land", "D) No TDS is applicable, as the payment is considered a capital expenditure"]
+        "options": ["A. TDS is applicable at the rate of 10% as the lease premium is treated as rent", "B. TDS is applicable at the rate of 20% due to the non-periodic nature of the lease premium", "C. TDS is applicable at the rate of 2% for lease premium paid for land", "D. No TDS is applicable, as the payment is considered a capital expenditure"]
         
     },
     22: {
         "question": "Shyam Metalics a manufacturing company, has entered into rent agreement which is owned by three co-owners(Mr. Narayan, John & Hariprasad) at the ratio of 5:3:2. The total rent paid is 10,75,000 on 31st Oct’24. what is the correct TDS treatment in case of payment made to three people?",
-        "options": ["A) 194C @1% Mr Naryan INR 5,375, Mr. John INR 3,225, Mr Hariprasad INR 2150", "B) 194I @10% Mr Naryan INR 53,750, Mr. John INR 32,250, Mr Hariprasad NIL", "C) 194IA @10% Mr Naryan INR 53,750, Mr. John INR 32,250, Mr Hariprasad 21,500", "D) 194I @10% Mr Naryan INR 53,750, Mr. John INR 32,250, Mr Hariprasad 21,500"]
+        "options": ["A. 194C @1% Mr Naryan INR 5,375, Mr. John INR 3,225, Mr Hariprasad INR 2150", "B. 194I @10% Mr Naryan INR 53,750, Mr. John INR 32,250, Mr Hariprasad NIL", "C. 194IA @10% Mr Naryan INR 53,750, Mr. John INR 32,250, Mr Hariprasad 21,500", "D. 194I @10% Mr Naryan INR 53,750, Mr. John INR 32,250, Mr Hariprasad 21,500"]
         
     },
     23: {
         "question": "Shyam Metalics Ltd., a company based in Kolkata, is purchasing a commercial property from Mr. Ramesh, a resident individual. The sale consideration for the property is ₹1,00,00,000(SDV 1,20,00,000). The transaction is scheduled for February 10, 2025. As per the agreement, Shyam Metalics is required to deduct TDS under Section 194IA. The company has verified that the sale consideration exceeds ₹50 lakh, and Mr. Ramesh has provided his PAN details. Shyam Metalics plans to make the payment via cheque and deduct the TDS from the payment amount before transferring the balance to Mr. Ramesh. what is the correct TDS treatment?",
-        "options": ["A) 194IB @1% 1,20,000", "B) 194I @10% 10,00,000", "C) 194IA @1% 1,20,000", "D) 194IB @10% 12,00,000"]
+        "options": ["A. 194IB @1% 1,20,000", "B. 194I @10% 10,00,000", "C. 194IA @1% 1,20,000", "D. 194IB @10% 12,00,000"]
         
     },
     24: {
         "question": "Shyam Metalics Ltd., a manufacturing company, purchases raw materials (steel and metals) worth ₹80,00,000 from Steel Traders Pvt. Ltd. during the November’24 (First transaction). The transaction is part of an ongoing business relationship. As per the terms of the agreement, the payment is made after 45 days from the date of invoice. After receiving the goods, Shyam Metalics Ltd. returns a portion of the purchased goods worth ₹10,00,000 to Steel Traders Pvt. Ltd. due to quality issues. What will be the TDS treatment?",
-        "options": ["A) 194C @2% INR 1,40,000", "B) 194Q @1% INR 70,000", "C) 194Q @0.1% INR 8,000", "D) 194Q @0.1% INR 2,000"]
+        "options": ["A. 194C @2% INR 1,40,000", "B. 194Q @1% INR 70,000", "C. 194Q @0.1% INR 8,000", "D. 194Q @0.1% INR 2,000"]
         
     },
     25: {
         "question": "Combo Ltd., a newly established business in the month Dec’24 with small operation, has started selling raw materials (steel) to Shyam Metalics, a manufacturing company. Steel Traders Pvt. Ltd. made its first sale to ABC Enterprises worth ₹70,00,000. The purchase was made on October 15, 2025, and the payment terms are 45 days from the date of invoice. (assume buyers turnover does not exceed 10 Cr). What will be the TDS treatment?",
-        "options": ["A) 194C @2% INR 1,40,000", "B) 194Q @1% INR 70,000", "C) 194Q @0.1% INR 2,000", "D) NIL"]
+        "options": ["A. 194C @2% INR 1,40,000", "B. 194Q @1% INR 70,000", "C. 194Q @0.1% INR 2,000", "D. NIL"]
         
     },
 
@@ -158,31 +158,31 @@ questions = {
 
 # Correct answers
 correct_answers = {
-    1: "B. ",
-    2: "A. ",
-    3: "D. ",
-    4: "B. ",
-    5: "C. ",
-    6: "A. ",
-    7: "D. ",
-    8: "B. ",
-    9: "C. ",
-    10: "B. ",
-    11: "D. ",
-    12: "A. ",
-    13: "C. ",
-    14: "A. ",
-    15: "C. ",
-    16: "B. ",
-    17: "D. ",
-    18: "C. ",
-    19: "C. ",
-    20: "B. ",
-    21: "D. ",
-    22: "B. ",
-    23: "C. ",
-    24: "D. ",
-    25: "D. ",
+    1: "B. Section 194H, 2%, INR 20,000",
+    2: "A. Section 194I, 10%, INR 10,000 and 10%, INR 10,000",
+    3: "D.",
+    4: "B.",
+    5: "C.",
+    6: "A.",
+    7: "D.",
+    8: "B.",
+    9: "C.",
+    10: "B.",
+    11: "D.",
+    12: "A.",
+    13: "C.",
+    14: "A.",
+    15: "C.",
+    16: "B.",
+    17: "D.",
+    18: "C.",
+    19: "C.",
+    20: "B.",
+    21: "D.",
+    22: "B.",
+    23: "C.",
+    24: "D.",
+    25: "D.",
     
 }
 
@@ -234,10 +234,8 @@ def questions_page():
 
 @app.route('/questions', methods=['GET'])
 def get_questions():
-    # Select questions from the total questions
-    selected_questions = dict(questions)
-    # Add serial numbers to the questions
-    numbered_questions = {i+1: selected_questions[q_id] for i, q_id in enumerate(selected_questions)}
+    # Return all questions
+    numbered_questions = {i+1: questions[q_id] for i, q_id in enumerate(questions)}
     return jsonify(numbered_questions)
 
 @app.route('/submit_email', methods=['POST'])
@@ -281,11 +279,10 @@ def calculate_score(answers):
     score = {'score': 0, 'correct_count': 0, 'wrong_count': 0}
     for q_id, answer in answers.items():
         q_id = int(q_id)
-        if answer == correct_answers[q_id]:
+        if answer.strip() == correct_answers[q_id]:
             score['score'] += 2
             score['correct_count'] += 1
         else:
-            # score['score'] = 0
             score['wrong_count'] += 1
     return score
 
