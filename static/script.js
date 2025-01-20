@@ -158,13 +158,12 @@ document.addEventListener('DOMContentLoaded', function () {
             questionElements.forEach((el) => {
                 if (el.checked) {
                     const q_id = el.name.split('-')[1];
-                    answers[q_id] = el.value;
+                    answers[q_id] = el.value.trim(); // Trim the value to remove any extra spaces
                 }
             });
             console.log('Collected answers:', answers);
             return answers;
         }
-    }
 
     // Display results on the page
     function displayResults(data) {
